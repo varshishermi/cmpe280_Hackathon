@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sankey Diagram Example</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['sankey'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Reporter Countries');
+      data.addColumn('string', 'Partner Countries');
+      data.addColumn('number', 'Value');
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var rows = this.responseText.split('\n');
+          for (var i = 1; i < rows.length; i++) {
+            var cells = rows[i].split(',');
+            if (['Australia','Belarus','Brazil','Bulgaria','Canada','China', 'mainland','France','Germany','Hungary','Italy','Japan','Jordan','Lithuania','Mexico','Netherlands','Poland','Republic of Korea','Republic of Moldova','Romania','Russian Federation','Sweden','Türkiye','Ukraine','United Arab Emirates','United Kingdom of Great Britain and Northern Ireland','United States of America', 'Unspecified Area'].includes(cells[1])) {
+              data.addRow([cells[0], cells[1], parseInt(cells[2])]);
+            }
+
+            
+          }
+         var colors = ['#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f',
+            '#cab2d6', '#ffff99', '#1f78b4', '#33a02c','#FF5733',
+                        '#78E08F', 
+                        '#38ADA9', 
+                        '#E55039', 
+                        '#60A3BC', 
+                        '#3C6382', 
+                        '#38ADA9', 
+                        '#78E08F',
+                        '#FA983A', 
+                        '#E58E26',
+                        '#4CD137', 
+                        '#0ABDE3', 
+                        '#F8C291', 
+                        '#6D214F', 
+                        '#182C61', 
+                        '#B53471', 
+                        '#82589F', 
+                        '#D1D8E0', 
+                        '#CAD3C8', 
+                        '#F7B731', 
+                        '#FD7272', 
+                        '#9AECDB', 
+                        '#D6A2E8', 
+                        '#6D214F', 
+                        '#182C61', 
+                        '#FC427B', 
+                        '#BDC581', 
+                        '#FD7272'
+          ];
+
+            
+
+
+         
+          var options = {
+            width: 600,
+            height: 500,
+            sankey: {
+              node: {
+                label: {
+                  fontName: 'Times-Roman',
+                  fontSize: 14,
+                  color: '#871b47',
+                  bold: true,
+                  italic: true
+                }
+              },
+              link: {
+                colorMode: 'gradient',
+                colors: colors
+              }
+            },
+          };
+          var chart = new google.visualization.Sankey(document.getElementById('sankey_chart'));
+          chart.draw(data, options);
+        }
+      };
+      xhr.open('GET', 'Book2.csv', true);
+      xhr.send();
+    }
+  </script>
+</head>
+
+<body>
+  <div id="sankey_chart"></div>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['sankey']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'From');
+            data.addColumn('string', 'To');
+            data.addColumn('number', 'Value');
+            
+            data.addRows([
+            ['Egypt','Argentina',819.24],
+            ['Egypt','Australia',32724.21],
+            ['Egypt','Australia',202752],
+            ['Egypt','Australia',212674.55],
+            ['Egypt','Belarus',57750],
+            ['Egypt','Brazil',5.28],
+            ['Egypt','Brazil',819.24],
+            ['Egypt','Bulgaria',14.01],
+            ['Egypt','Bulgaria',46389.23],
+            ['Egypt','Canada',64.08],
+            ['Egypt','Canada',8354.17],
+            ['Egypt','Canada',5081.35],
+            ['Egypt','China, mainland',816.73],
+            ['Egypt','France',625830],
+            ['Egypt','France',590832.97],
+            ['Egypt','France',151115.82],
+            ['Egypt','Germany',816.73],
+            ['Egypt','Hungary',19087.83],
+            ['Egypt','Italy',0.02],
+            ['Egypt','Italy',1633.47],
+            ['Egypt','Japan',816.73],
+            ['Egypt','Jordan',0.02],
+            ['Egypt','Lithuania',23415.84],
+            ['Egypt','Lithuania',34773.13],
+            ['Egypt','Mexico',0.39],
+            ['Egypt','Netherlands',1],
+            ['Egypt','Netherlands',816.73],
+            ['Egypt','Poland',128332.5],
+            ['Egypt','Poland',1635.97],
+            ['Egypt','Republic of Korea',357.19],
+            ['Egypt','Republic of Moldova',9.07],
+            ['Egypt','Romania',1286086],
+            ['Egypt','Romania',293237.18],
+            ['Egypt','Romania',821174.27],
+            ['Egypt','Russian Federation',5743949.1],
+            ['Egypt','Russian Federation',5436683.61],
+            ['Egypt','Russian Federation',2404851.92],
+            ['Egypt','Sweden',816.73],
+            ['Egypt','Türkiye',1633.51],
+            ['Egypt','Ukraine',1767563.01],
+            ['Egypt','Ukraine',2307422.23],
+            ['Egypt','Ukraine',1460342.96],
+            ['Egypt','United Arab Emirates',819.24],
+            ['Egypt','United Kingdom of Great Britain and Northern Ireland',1.79],
+            ['Egypt','United Kingdom of Great Britain and Northern Ireland',1635.97],
+            ['Egypt','United States of America',782095.1],
+            ['Egypt','United States of America',74953.56],
+            ['Egypt','United States of America',2452.7]
+                // ... more rows ...
+            ]);
+
+            var options = {
+                width: 600,
+            };
+
+            var chart = new google.visualization.Sankey(document.getElementById('sankey_chart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <p>Sankey chart for years - 2019, 2021 and 2022</p>
+    <div id="sankey_chart" style="width: 1500px; height: 500px;"></div>
+</body>
+</html>
